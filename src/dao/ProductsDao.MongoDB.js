@@ -1,5 +1,4 @@
 import { productsModel } from "./models/productsModel.js"
-import { createMockProduct } from "../utils/mocks.utils.js"
 
 export class ProductsDaoMongo {
     constructor(){
@@ -58,7 +57,6 @@ export class ProductsDaoMongo {
     }
 
     async createMock(data) {
-        console.log(data)
         return await this.model.create(data)
     }
 }

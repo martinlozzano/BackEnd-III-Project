@@ -23,4 +23,8 @@ export class UsersDaoMongo {
     async delete(uid) {
         return await this.model.findByIdAndDelete({_id: uid})
     }
+
+    async createMock(data) {
+        return await this.model.create(data)
+    }
 }

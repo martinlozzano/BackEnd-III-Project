@@ -13,12 +13,13 @@ const createMockProduct = () => {
 }
 
 const createMockUser = () => {
-    const sex = faker.person.sex()
-    const name = faker.person.fullName({sex: sex})
-    const job_title = faker.person.jobTitle()
-    const job_description = faker.person.jobDescriptor()
+    const first_name = faker.person.firstName()
+    const last_name = faker.person.lastName()
+    const email = `${first_name + last_name}@gmail.com `
+    const age = faker.number.int({min: 18, max: 99})
+    const password = "coder123"
 
-    return {sex, name, job_title, job_description}
+    return {first_name, last_name, email, age, password}
 }
 
 export { createMockProduct, createMockUser}

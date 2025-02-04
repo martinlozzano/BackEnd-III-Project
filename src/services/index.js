@@ -11,4 +11,3 @@ export const userService = new UserRepository(new UsersDaoMongo())
 export const cartService = new CartsRepository(new CartsDaoMongo())
 export const productService = new ProductsRepository(new ProductsDaoMongo())
 export const ticketService = new TicketsRepository(new TicketsDaoMongo())
-

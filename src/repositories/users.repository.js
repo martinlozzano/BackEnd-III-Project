@@ -26,4 +26,8 @@ export class UserRepository{
     deleteUser = async (id) =>{
         return await this.dao.delete(id)
     }
+
+    createMock = async (data) => {
+        return await this.dao.createMock(data)
+    }
 }

@@ -1,5 +1,6 @@
 import { UserDto } from "../dto/users.dto.js"
 import { userService } from "../services/index.js"
+import { createMockUser } from "../utils/mocks.utils.js"
 
 export class UserController {
     constructor(){
@@ -102,4 +103,13 @@ export class UserController {
         }
     }
 
+    createMockUser = async (req, res) => {
+        try {
+            const data = createMockUser()
+            const one = await this.service.createMock(data)
+            return res.status(201).json({message: "¡User created!", response: one})
+        } catch (error) {
+            return res.status(500).json({ message: "¡ERROR!", response: error })
+        }
+    }
 }

@@ -268,7 +268,7 @@ export class ProductController{
         try {
             const data = createMockProduct()
             const one = await this.service.createMock(data)
-            return res.status(201).json({message: "¡Created!", response: one})
+            return res.status(201).json({message: "¡Product created!", response: one})
         } catch (error) {
             return res.status(500).json({ error })
         }

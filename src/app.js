@@ -17,6 +17,7 @@ import { UserRouter } from "./routes/userClass.router.js"
 import { ProductRouter } from "./routes/productClass.router.js"
 import { CartRouter } from "./routes/cartsClass.router.js"
 import { TicketRouter } from "./routes/ticketClass.router.js"
+import { MocksRouter } from "./routes/mocks.router.js"
 // import FileStore from "session-file-store"
 
 const PORT = 8080
@@ -74,6 +75,7 @@ const userRouter = new UserRouter()
 const productRouter = new ProductRouter()
 const cartRouter = new CartRouter()
 const ticketRouter = new TicketRouter()
+const mocksRouter = new MocksRouter()
 
 app.use("/api/sessions/",
     (req, res, next) => {
@@ -109,6 +111,13 @@ app.use("/api/tickets/",
         next()
     },
     ticketRouter.getRouter())
+
+app.use("/api/mocks/",
+    (req, res, next) => {
+        req.io=io
+        next()
+    },
+    mocksRouter.getRouter())
 
 app.use("/",
     (req, res, next) => {
