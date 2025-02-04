@@ -1,0 +1,152 @@
+[
+    {
+        "title": "Camisa",
+        "description": "(Breve descripción)",
+        "code": "1000",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Ropa",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Pantalon",
+        "description": "(Breve descripción)",
+        "code": "1001",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Ropa",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Remera",
+        "description": "(Breve descripción)",
+        "code": "1002",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Ropa",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Zapatillas",
+        "description": "(Breve descripción)",
+        "code": "1003",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Ropa",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Collar",
+        "description": "(Breve descripción)",
+        "code": "1004",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Accesorio",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Reloj",
+        "description": "(Breve descripción)",
+        "code": "1005",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Accesorio",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Medias",
+        "description": "(Breve descripción)",
+        "code": "1006",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Ropa",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Anillo",
+        "description": "(Breve descripción)",
+        "code": "1007",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Accesorio",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Guantes",
+        "description": "(Breve descripción)",
+        "code": "1008",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Accesorio",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    },
+    {
+        "title": "Campera",
+        "description": "(Breve descripción)",
+        "code": "1009",
+        "price": 150,
+        "status": true,
+        "stock": 10,
+        "category": "Ropa",
+        "thumbnails": [
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150",
+            "https://placeholder.pics/svg/150"
+        ] 
+    }
+]
