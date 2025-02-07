@@ -1,6 +1,9 @@
 import { isValidObjectId } from "mongoose"
 import { productService } from "../services/index.js"
 import { createMockProduct } from "../utils/mocks.utils.js"
+import CustomError from "../utils/errors/custom.error.js"
+import { forbidden, notFound } from "../utils/errors/dictionary.error.js"
+import loggerUtil from "../utils/logger.util.js"
 
 export class ProductController{
     constructor() {
@@ -37,31 +40,32 @@ export class ProductController{
         }
     }
 
-    getProductBy = async (req, res) => {
-        let { pid } = req.params
-
-        if(!isValidObjectId(pid)){
-            res.setHeader("Content-Type", "application/json")
-            return res.status(400).json({error:"Formato de id inválido."})
-        }
-
+    getProductBy = async (req, res, next) => {
         try {
+            let { pid } = req.params
+
+            if(!isValidObjectId(pid)){
+                /* res.setHeader("Content-Type", "application/json")
+                return res.status(400).json({error:"Formato de id inválido."}) */
+                CustomError.new(forbidden)
+            }
+
             let product = await this.service.getProductsBy(pid)
 
             if (!product) {
-                res.setHeader("Content-Type", "application/json")
-                return res.status(400).json({ error: `No existe el producto con el id: ${pid}` })
+                CustomError.new(notFound)
             }
 
             res.setHeader("Content-Type", "application/json")
             return res.status(200).json(product)
 
         } catch (error) {
-            res.setHeader("Content-Type", "application/json")
+            /* res.setHeader("Content-Type", "application/json")
             return res.status(500).json({
                 error: `Error inesperado en el servidor.`,
                 detalle: `${error.message}`
-            })
+            }) */
+           next(error)
         }
     }
 
@@ -144,7 +148,7 @@ export class ProductController{
             res.setHeader("Content-Type", "application/json")
             return res.status(201).json({productoNuevo})
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -255,7 +259,7 @@ export class ProductController{
             res.setHeader("Content-Type", "application/json")
             return res.status(200).json({productoEliminado})
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -271,6 +275,23 @@ export class ProductController{
             return res.status(201).json({message: "¡Product created!", response: one})
         } catch (error) {
             return res.status(500).json({ error })
+        }
+    }
+
+    createMockProducts = async (req, res) => {
+        try {
+            const {productsQuantities} = req.params
+            const products = []
+
+            for(let i = 0; i < productsQuantities; i++){
+                const data = createMockProduct()
+                const one = await this.service.createMock(data)
+
+                products.push(one)
+            }
+            return products
+        } catch (error) {
+            return res.status(500).json({ message: "Error interno del servidor", response: error.message })
         }
     }
 }

@@ -2,6 +2,8 @@ import { Router } from "express"
 import { ProductsDaoMongo } from "../dao/ProductsDao.MongoDB.js"
 import { CartsDaoMongo } from "../dao/CartsDao.MongoDB.js"
 import { isValidObjectId } from "mongoose"
+import loggerUtil from "../utils/logger.util.js"
+
 export const router = Router()
 
 const cartDaoMongo = new CartsDaoMongo()
@@ -50,7 +52,7 @@ router.get("/realtimeproducts", async(req, res) => {
     res.status(200).render("realTimeProducts", {products: products.payload})
 
     req.io.on("recargaProductos", (prod) => {
-        console.log("recargando")
+        loggerUtil.INFO("recargando")
         res.setHeader("Content-Type", "text/html")
         res.status(200).render("realTimeProducts", {prod})
     })
@@ -76,7 +78,7 @@ router.get("/carts/:cid", async(req, res) =>{
         res.status(200).render("carts", {products: cart.products})
         
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,

@@ -5,6 +5,7 @@ import { createHash, isValidPassword } from "../utils/bcrypt.js"
 import passport from "passport"
 import {generateToken} from "../utils/jsonwebtoken.js"
 import { passportCall } from "../utils/passport/passportCall.js"
+import loggerUtil from "../utils/logger.util.js"
 
 export const router = Router()
 
@@ -13,12 +14,12 @@ const usersDaoMongo = new UsersDaoMongo()
 //REGISTER Y LOGIN CON PASSPORT
 
 router.post("/register", passport.authenticate("register", {failureRedirect: "/failRegister"}), async(req, res) =>{
-    console.log("se registro")
+    loggerUtil.INFO("se registro")
     res.send({status: "success", message: "Registro completado."})
 })
 
 router.get("/failRegister", async(req, res) =>{
-    console.log("Fallo la estrategia")
+    loggerUtil.ERROR("Fallo la estrategia")
     res.send({status: "error", error:"Fallo estrategia."})
 })
 
@@ -45,7 +46,7 @@ router.post("/login", passport.authenticate("login" ,{failureRedirect: "/failedL
     }).status(200).send({status: "succes", data: userFound, token})
 })
 router.get("/failedLogin", async(req, res) =>{
-    console.log("Fallo la estrategia")
+    loggerUtil.ERROR("Fallo la estrategia")
     res.send({status: "error", error: "Fallo estrategia."})
 })
 

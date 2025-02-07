@@ -13,7 +13,7 @@ export class UserRouter extends RouterClass {
     init(){
         this.get("/", ["ADMIN"], getUsers)
         this.get("/:uid", ["ADMIN"], getUserBy)
-        this.post("/", ["ADMIN"], createUser)
+        this.post("/", ["PUBLIC"], createUser)
         this.put("/:uid", ["ADMIN"], updateUsers)
         this.delete("/:uid", ["ADMIN"], deleteUsers)
     }

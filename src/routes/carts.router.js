@@ -2,6 +2,7 @@ import {Router} from "express"
 import { CartsDaoMongo } from "../dao/CartsDao.MongoDB.js"
 import { ProductsDaoMongo } from "../dao/ProductsDao.MongoDB.js"
 import { isValidObjectId } from "mongoose"
+import loggerUtil from "../utils/logger.util.js"
 
 export const router = Router()
 
@@ -12,7 +13,7 @@ router.get("/", async (req, res) =>{
     try {
         carritos = await CartsDaoMongo.getCarts()
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -43,7 +44,7 @@ router.get("/:cid", async (req, res) =>{
         return res.status(200).json(carrito)
 
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -67,7 +68,7 @@ router.post("/", async (req, res) =>{
         res.setHeader("Content-Type", "application/json")
         return res.status(201).json({carritoNuevo})
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -98,7 +99,7 @@ router.post("/:cid/product/:pid", async (req, res) =>{
             return res.status(400).json({ error: `No existe el producto con el id solicitado` })
         }
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -112,7 +113,7 @@ router.post("/:cid/product/:pid", async (req, res) =>{
         res.setHeader("Content-Type", "application/json")
         return res.status(200).json({prodAgregado})
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -150,7 +151,7 @@ router.delete("/:cid/product/:pid", async (req, res) => {
         return res.status(200).json({carritoModificado})
         
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -183,7 +184,7 @@ router.delete("/:cid", async(req,res) =>{
         return res.status(200).json({carritoModificado})
         
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -209,7 +210,7 @@ router.put("/:cid", async(req, res)=>{
         res.setHeader("Content-Type", "application/json")
         return res.status(200).json({carritoModificado})
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,
@@ -254,7 +255,7 @@ router.put("/:cid/product/:pid", async(req, res)=>{
         return res.status(200).json({carritoModificado})
         
     } catch (error) {
-        console.log(error)
+        loggerUtil.ERROR(error)
         res.setHeader("Content-Type", "application/json")
         res.status(500).json({
             error: `Error inesperado en el servidor.`,

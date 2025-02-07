@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import { createHash } from "./bcrypt.js"
 
 const createMockProduct = () => {
     const title = faker.commerce.productName()
@@ -15,9 +16,9 @@ const createMockProduct = () => {
 const createMockUser = () => {
     const first_name = faker.person.firstName()
     const last_name = faker.person.lastName()
-    const email = `${first_name + last_name}@gmail.com `
+    const email = `${first_name + last_name}@gmail.com`
     const age = faker.number.int({min: 18, max: 99})
-    const password = "coder123"
+    const password = createHash("coder123")
 
     return {first_name, last_name, email, age, password}
 }

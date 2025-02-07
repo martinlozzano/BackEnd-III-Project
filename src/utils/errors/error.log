@@ -1,0 +1,9 @@
+[33mWARN[39m: undefined {"statusCode":403}
+[33mWARN[39m: undefined {"statusCode":403}
+[33mWARN[39m: Forbidden
+[33mWARN[39m: 
+[33mWARN[39m: 
+[33mWARN[39m: 
+[33mWARN[39m: 
+[33mWARN[39m: undefined {"code":8000,"codeName":"AtlasError","connectionGeneration":0,"errorResponse":{"code":8000,"codeName":"AtlasError","errmsg":"bad auth : authentication failed","ok":0},"ok":0}
+[33mWARN[39m: undefined {"code":8000,"codeName":"AtlasError","connectionGeneration":0,"errorResponse":{"code":8000,"codeName":"AtlasError","errmsg":"bad auth : authentication failed","ok":0},"ok":0}

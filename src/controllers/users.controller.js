@@ -105,11 +105,29 @@ export class UserController {
 
     createMockUser = async (req, res) => {
         try {
+            
             const data = createMockUser()
             const one = await this.service.createMock(data)
             return res.status(201).json({message: "¡User created!", response: one})
         } catch (error) {
             return res.status(500).json({ message: "¡ERROR!", response: error })
+        }
+    }
+
+    createMockUsers = async (req, res) => {
+        try {
+            const {usersQuantities} = req.params
+            const users = []
+
+            for(let i = 0; i < usersQuantities; i++){
+                const data = createMockUser()
+                const one = await this.service.createMock(data)
+
+                users.push(one)
+            }
+            return users
+        } catch (error) {
+            return res.status(500).json({ message: "Error interno del servidor", response: error.message })
         }
     }
 }

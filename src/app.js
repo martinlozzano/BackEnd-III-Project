@@ -1,13 +1,11 @@
 import express from "express"
 import { engine } from "express-handlebars"
 import { Server } from "socket.io"
-import { router as productsRouter} from "./routes/products.router.js"
-import { router as cartsRouter} from "./routes/carts.router.js"
 import { router as vistasRouter } from "./routes/vistas.router.js"
 import { router as sessionsRouter } from "./routes/sessions.router.js"
 /* import { router as usersRouter } from "./routes/users.router.js" */
 import { router as pruebasRouter } from "./routes/pruebas.router.js"
-import { connDB } from "./data/connDB.js"
+import connDB from "./data/connDB.js"
 import cookieParser from "cookie-parser"
 import session from "express-session"
 import MongoStore from "connect-mongo"
@@ -18,10 +16,14 @@ import { ProductRouter } from "./routes/productClass.router.js"
 import { CartRouter } from "./routes/cartsClass.router.js"
 import { TicketRouter } from "./routes/ticketClass.router.js"
 import { MocksRouter } from "./routes/mocks.router.js"
+import env from "./utils/env.utils.js"
+import loggerUtil from "./utils/logger.util.js"
+import errorHandler from "./middlewares/errorHandler.mid.js"
+import argsUtils from "./utils/args.utils.js"
 // import FileStore from "session-file-store"
 
-const PORT = 8080
 const app = express()
+const PORT = env.PORT || 8080
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -51,7 +53,7 @@ app.use(session({
 
 app.use(session({
     store: MongoStore.create({
-        mongoUrl: "mongodb+srv://ecommerce:1234@cluster0.tlsjd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+        mongoUrl: env.MONGO_LINK,
         ttl: 100000
     }),
     secret: "secretcoder",
@@ -128,12 +130,19 @@ app.use("/",
 
 app.use("/pruebas/", pruebasRouter)
 
-const serverHTTP = app.listen(PORT, () => console.log(`Servidor online en puerto ${PORT}`))
+app.use(errorHandler)
+
+const ready = async () => {
+    const mode = argsUtils.mode
+    loggerUtil.INFO("Server ready on " + mode + " mode and on port " + PORT)
+    await connDB()
+}
+
+const serverHTTP = app.listen(PORT, ready)
 
 let io = new Server(serverHTTP)
 
 io.on("connection", socket=>{
-    console.log(`Se ha contectado un cliente con id ${socket.id}`)
+    loggerUtil.INFO(`Se ha contectado un cliente con id ${socket.id}`)
 })
 
-connDB()

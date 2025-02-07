@@ -1,6 +1,7 @@
 import { isValidObjectId } from "mongoose"
 import { ticketService } from "../services/index.js"
 import { CartsDaoMongo } from "../dao/CartsDao.MongoDB.js"
+import loggerUtil from "../utils/logger.util.js"
 
 const cartsDaoMongo = new CartsDaoMongo()
 
@@ -91,7 +92,7 @@ export class TicketController {
             return res.status(200).json(ticketNuevo)
             
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,

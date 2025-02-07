@@ -1,6 +1,7 @@
 import { ProductsDaoMongo } from "../dao/ProductsDao.MongoDB.js"
 import { cartService } from "../services/index.js"
 import { isValidObjectId } from "mongoose"
+import loggerUtil from "../utils/logger.util.js"
 
 const productsDaoMongo = new ProductsDaoMongo()
 
@@ -14,7 +15,7 @@ export class CartController {
         try {
             carritos = await this.service.getCarts()
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -45,7 +46,7 @@ export class CartController {
             return res.status(200).json(carrito)
     
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -60,7 +61,7 @@ export class CartController {
             res.setHeader("Content-Type", "application/json")
             return res.status(201).json({carritoNuevo})
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -91,7 +92,7 @@ export class CartController {
                 return res.status(400).json({ error: `No existe el producto con el id solicitado` })
             }
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -105,7 +106,7 @@ export class CartController {
             res.setHeader("Content-Type", "application/json")
             return res.status(200).json({prodAgregado})
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -138,7 +139,7 @@ export class CartController {
             return res.status(200).json({carritoModificado})
             
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -176,7 +177,7 @@ export class CartController {
             return res.status(200).json({carritoModificado})
             
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -202,7 +203,7 @@ export class CartController {
             res.setHeader("Content-Type", "application/json")
             return res.status(200).json({carritoModificado})
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -246,7 +247,7 @@ export class CartController {
             return res.status(200).json({carritoModificado})
             
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,
@@ -278,13 +279,13 @@ export class CartController {
                 }
             })
 
-            let ticketResponse = await fetch(`http://localhost:8080/api/tickets/${cid}`, {method:"POST"}).then(res=> res.json()).then(data => console.log(data)).catch(error=> console.log(error))
+            let ticketResponse = await fetch(`http://localhost:8080/api/tickets/${cid}`, {method:"POST"}).then(res=> res.json()).then(data => loggerUtil.INFO(data)).catch(error=> loggerUtil.ERROR(error))
 
             res.setHeader("Content-Type", "application/json")
             return res.status(200).send(nuevoCarrito)
             
         } catch (error) {
-            console.log(error)
+            loggerUtil.ERROR(error)
             res.setHeader("Content-Type", "application/json")
             res.status(500).json({
                 error: `Error inesperado en el servidor.`,

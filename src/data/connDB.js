@@ -1,15 +1,14 @@
-import mongoose from "mongoose"
+import { connect } from "mongoose"
+import env from "../utils/env.utils.js"
+import loggerUtil from "../utils/logger.util.js"
 
-const mongo_url = "mongodb+srv://ecommerce:1234@cluster0.tlsjd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-
-export const connDB = async() => {
+async function connDB() {
     try {
-        await mongoose.connect(
-            mongo_url,
-            {dbName: "ecommerce"}
-        )
-        console.log(`*DB conectada*`)
+        await connect(env.MONGO_LINK)
+        loggerUtil.INFO(`*DB conectada*`)
     } catch (error) {
-        console.log(`Error al conectar a DB: ${error.message}`)
+        loggerUtil.WARN(error)
     }
 }
+
+export default connDB
