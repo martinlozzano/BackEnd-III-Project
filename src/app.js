@@ -20,6 +20,11 @@ import env from "./utils/env.utils.js"
 import loggerUtil from "./utils/logger.util.js"
 import errorHandler from "./middlewares/errorHandler.mid.js"
 import argsUtils from "./utils/args.utils.js"
+import cluster from "cluster"
+import {cpus} from "os"
+import { log } from "console"
+import { loggers } from "winston"
+
 // import FileStore from "session-file-store"
 
 const app = express()
@@ -134,13 +139,26 @@ app.use(errorHandler)
 
 const ready = async () => {
     const mode = argsUtils.mode
-    loggerUtil.INFO("Server ready on " + mode + " mode and on port " + PORT)
+    loggerUtil.INFO(`Server ready on ${mode} mode, on port ${PORT} and on process ${process.pid}`)
     await connDB()
 }
 
-const serverHTTP = app.listen(PORT, ready)
+const isPrimary = cluster.isPrimary
+const numberOfProcess = cpus().length
+let serverHttp
 
-let io = new Server(serverHTTP)
+if(isPrimary){
+    loggerUtil.INFO(`isPrimary: ${process.pid}`)
+
+    for(let index = 1; index <= numberOfProcess; index++){
+        cluster.fork()
+    } 
+} else{
+    loggerUtil.INFO(`isWorker: ${process.pid}`)
+    serverHttp = app.listen(PORT, ready)
+}
+
+let io = new Server(serverHttp)
 
 io.on("connection", socket=>{
     loggerUtil.INFO(`Se ha contectado un cliente con id ${socket.id}`)

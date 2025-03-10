@@ -5,14 +5,20 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/app.js --mode prod",
-    "dev": "nodemon ./src/app.js --mode dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node ./src/app.js --mode dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildimage": "docker build -t backend-iii-lozzanomartin ./",
+    "container1": "docker run -p 8070:8080 backend-iii-lozzanomartin",
+    "container2": "docker run -p 8080:8080 backend-iii-lozzanomartin",
+    "container3": "docker run -p 8090:8080 backend-iii-lozzanomartin",
+    "tagcontainer": "docker tag backend-iii-lozzanomartin martinlozzano/back-70210:1.0.0",
+    "pushcontainer": "docker push martinlozzano/back-70210:1.0.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "commander": "^13.1.0",
     "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",
