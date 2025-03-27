@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/app.js --mode dev",
+    "start": "node ./src/app.js",
     "dev": "node ./src/app.js --mode dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildimage": "docker build -t backend-iii-lozzanomartin ./",
