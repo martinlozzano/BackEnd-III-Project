@@ -1,0 +1,18 @@
+components:
+  schemas:
+    Ticket:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Codigo de identificacion unico del ticket
+        amount:
+          type: number
+          description: Precio total de la compra realizada
+        purchaser:
+          type: string
+          description: Nombre de la persona que realizo la compra
+      example:
+        code: n123
+        amount: 2500
+        purchaser: Martin     

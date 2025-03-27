@@ -1,0 +1,11 @@
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        products:
+          type: array
+          description: Lista de productos en el carrito
+      example:
+        products: [{product: Camisa, quantity: 2}, {product: Pantalon, quantity: 1}]
+

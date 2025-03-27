@@ -1,0 +1,34 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: Primer nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          format: email
+          description: Direccion de correo electronico del usuario
+        age:
+          type: number
+          description: Edad del usuario
+        password: 
+          type: string
+          description: Contraseña del usuario para iniciar sesion correctamente
+        cart:
+          type: Schema.Types.ObjectId
+          description: Carrito de compras vinculado al usuario
+        role:
+          type: string
+          description: Rol que asigna permisos al usuario
+      example:
+        first_name: Martin
+        last_name: Lozzano
+        email: martin@example.com
+        age: 23
+        password: martin1234
+        role: user

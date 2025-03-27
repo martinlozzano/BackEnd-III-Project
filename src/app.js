@@ -22,8 +22,8 @@ import errorHandler from "./middlewares/errorHandler.mid.js"
 import argsUtils from "./utils/args.utils.js"
 import cluster from "cluster"
 import {cpus} from "os"
-import { log } from "console"
-import { loggers } from "winston"
+import { serve, setup } from "swagger-ui-express"
+import docSpec from "./utils/docSpec.util.js"
 
 // import FileStore from "session-file-store"
 
@@ -76,6 +76,8 @@ app.engine("handlebars", engine({
 }))
 app.set("view engine", "handlebars")
 app.set("views", "./src/views")
+
+app.use("/api/docs", serve, setup(docSpec))
 
 
 const userRouter = new UserRouter()

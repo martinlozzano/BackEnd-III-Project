@@ -1,0 +1,37 @@
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripcion del producto
+        code:
+          type: string
+          description: Codigo identificador unico del producto
+        price:
+          type: number
+          description: Precio de venta del producto 
+        status:
+          type: boolean
+          description: Estado del producto
+        stock:
+          type: number
+          description: Cantidad en stock del producto
+        category:
+          type: string
+          description: Categoria a la que pertenece el producto
+        image:
+          type: string
+          description: Imagen ilustrativa del producto 
+      example:
+        title: Coca-Cola
+        description: Bebida gasificada sabor cola y fabricada por una marca multinacional
+        code: 1245
+        price: 2500
+        status: true
+        stock: 20
+        category: bebidas
